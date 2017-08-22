@@ -1,18 +1,9 @@
-<html>
-    <head>
-        <title>My Joy Story</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    </head>
-    <body>
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for post in posts %}
         <div>
-            <h1>Here are my joy stories</h1>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>written by&nbsp;{{ post.author }} {{ post.published_date}}</p>
         </div>
-        {% for post in posts %}
-            <div>
-                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                <p>written by&nbsp;{{ post.author }} {{ post.published_date}}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
